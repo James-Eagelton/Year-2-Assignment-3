@@ -7,18 +7,25 @@ public class WeaponScript : MonoBehaviour
     private Transform cameraTransform;
     public GameObject otherHitEffect;
     public GameObject enemyHitEffect;
-
+    public Animator gun;
+    public bool canShoot;
 
 
     private void Start()
     {
         cameraTransform = Camera.main.transform;
+        canShoot = true;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot == true)
         {
+            print("FUCJK");
+            
+            canShoot = false;
+            gun.SetTrigger("isShoot");
+
             RaycastHit hit;
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
             Debug.DrawRay(ray.origin, ray.direction * Mathf.Infinity, color: Color.red);
@@ -38,6 +45,13 @@ public class WeaponScript : MonoBehaviour
                     Debug.Log("hit");
                 }
             }
+            Invoke("Cooldown", 0.90f);
         }
     }
+
+    public void Cooldown() 
+    {
+        canShoot = true;
+    }
+
 }
