@@ -21,7 +21,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canShoot == true)
         {
-            print("FUCJK");
+           
             
             canShoot = false;
             gun.SetTrigger("isShoot");
@@ -35,14 +35,14 @@ public class WeaponScript : MonoBehaviour
                 {
                     GameObject hitDecal = Instantiate(otherHitEffect, hit.point + (hit.normal * 0.01f), Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
-                    Debug.Log("hit");
+                    Debug.Log("Other hit");
                 }
 
                 if (hit.collider.tag == "Enemy") 
                 {
                     GameObject hitDecal = Instantiate(enemyHitEffect, hit.point + (hit.normal * 0.01f), Quaternion.FromToRotation(Vector3.forward, hit.normal));
 
-                    Debug.Log("hit");
+                    Debug.Log("Enemy hit");
                 }
             }
             Invoke("Cooldown", 0.90f);

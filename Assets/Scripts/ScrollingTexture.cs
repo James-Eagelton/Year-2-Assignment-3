@@ -7,10 +7,18 @@ using UnityEngine.UI;
 public class ScrollingTexture : MonoBehaviour
 {
 
-    public RawImage rawImage;
+     RawImage rawImage;
+
+
+    private void Start()
+    {
+        rawImage = GetComponent<RawImage>();
+    }
+
+
 
     // Offset values
-   
+
     public float xFrequency;
     public float yFrequency;
     public float xAmplitude;
